@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 
 // import navberImg from '../../../assets/others/authentication2.png'
-import navberImg2 from '../../../assets/others/cupcake-dribbble.gif'
+import animation from '../../../assets/others/cupcake-dribbble.gif'
 
 
 function Navber() {
@@ -29,7 +29,7 @@ function Navber() {
                         </ul>
                     </div>
                     <div className="flex">
-                        <img className="rounded-full w-10 h-10" src={navberImg2} alt="" />
+                        <img className="rounded-full w-10 h-10" src={animation} alt="" />
                         <a className="btn btn-ghost text-sky-400 font-Rubik text-2xl">Bistro Boss</a>
                     </div>
                 </div>
