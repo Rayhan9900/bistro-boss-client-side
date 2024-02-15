@@ -9,8 +9,9 @@ function Navber() {
 
     const navOption = <>
 
-        <li><Link className="text-cyan-400 font-semibold hover:bg-green-500" to="/">Home</Link></li>
-        <li><Link className="text-cyan-400 font-semibold hover:bg-green-500" to="/menu">Our Menu</Link></li>
+        <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/">Home</Link></li>
+        <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/menu">Our Menu</Link></li>
+        <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/order">Order Food</Link></li>
 
     </>
 
