@@ -11,7 +11,7 @@ function Navber() {
 
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/">Home</Link></li>
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/menu">Our Menu</Link></li>
-        <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/order">Order Food</Link></li>
+        <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/order/salad">Order Food</Link></li>
 
     </>
 

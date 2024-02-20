@@ -36,7 +36,8 @@ function PopularMenu() {
                 }
             </div>
             <div className="text-center p-4">
-                <button className="btn btn-outline  border-b-4 border-accent">View Full Menu</button>
+                <button className="btn btn-outline border-0 border-b-4 border-accent hover:bg-yellow-400">View Full Menu</button>
+                {/* <button className="btn btn-outline  border-b-4 border-accent">View Full Menu</button> */}
             </div>
         </section>
     )

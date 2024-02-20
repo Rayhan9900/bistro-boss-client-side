@@ -2,6 +2,8 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle"
 
 import chef from '../../../assets/home/slide1.jpg'
 
+
+
 function Recommends() {
     return (
         <div>
@@ -9,9 +11,7 @@ function Recommends() {
                 subHeading="Should Try"
                 heading="chef recommends"
             />
-
-
-            <div className="flex md:grid-cols-3 gap-6">
+            <div className=" container flex md:grid-cols-3 gap-6">
                 <div className="card w-96 glass">
                     <figure><img className="w-[420px] h-[300px]" src={chef} alt="car!" /></figure>
                     <div className="card-body ">
@@ -44,7 +44,7 @@ function Recommends() {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
 
