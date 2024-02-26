@@ -1,5 +1,5 @@
 
-// import img from '../../../assets/home/chef-service.jpg'
+
 
 import './Bistro.css'
 
