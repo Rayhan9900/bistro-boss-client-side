@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async"
 import Banner from "../Banner/Banner"
-import BistroSection from "../Bistro/BistroSection"
+// import BistroSection from "../Bistro/BistroSection"
 import Category from "../Category/Category"
 import Featured from "../Featured/Featured"
 import PopularMenu from "../PopularMenu/PopularMenu"
@@ -18,7 +18,7 @@ function Home() {
 
             <Banner></Banner>
             <Category></Category>
-            <BistroSection></BistroSection>
+            {/* <BistroSection></BistroSection> */}
             <PopularMenu></PopularMenu>
             <Contact></Contact>
             <Recommends></Recommends>

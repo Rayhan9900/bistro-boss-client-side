@@ -1,6 +1,7 @@
 import {
 
     createBrowserRouter,
+
 } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
@@ -8,6 +9,8 @@ import Menu from "../Pages/Menu/Menu/Menu";
 import Order from "../Pages/Order/order/Order";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
+import Secret from "../Pages/Shared/secret/Secret";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +37,11 @@ export const router = createBrowserRouter([
             {
                 path: "signUp",
                 element: <SignUp></SignUp>
+            },
+            {
+                path: "secret",
+                element: <PrivateRoute><Secret></Secret></PrivateRoute>
+
             }
         ]
     },

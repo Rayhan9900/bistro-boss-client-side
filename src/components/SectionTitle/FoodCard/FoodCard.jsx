@@ -2,6 +2,7 @@
 
 function FoodCard({ item }) {
     const { name, image, recipe, price } = item
+
     return (
         <div>
             <div className="card w-96 h-[520px]  outline outline-offset-2 outline-yellow-300 bg-blue-700 shadow-2xl shadow-sky-600">

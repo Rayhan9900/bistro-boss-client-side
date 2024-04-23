@@ -3,18 +3,38 @@ import { Link } from "react-router-dom"
 
 // import navberImg from '../../../assets/others/authentication2.png'
 import animation from '../../../assets/others/cupcake-dribbble.gif'
+import { useContext } from "react"
+import { AuthContext } from "../../../providers/AuthProvider"
 
 
 function Navber() {
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
+
+
 
     const navOption = <>
 
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/">Home</Link></li>
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/menu">Our Menu</Link></li>
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/order/salad">Order Food</Link></li>
+        <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/secret">Secret</Link></li>
 
-        <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/login">Login</Link></li>
-
+        {
+            user ? <>
+                <button onClick={handleLogOut} className="btn btn-ghost text-pink-600">LogOut</button>
+            </>
+                :
+                <>
+                    <li><Link className="text-pink-600  hover:bg-yellow-400" to="/login">Login</Link></li>
+                </>
+        }
 
     </>
 
