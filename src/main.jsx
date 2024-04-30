@@ -21,5 +21,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </div>
       </HelmetProvider>
     </AuthProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

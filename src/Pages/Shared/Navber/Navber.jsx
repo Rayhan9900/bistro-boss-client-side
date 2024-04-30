@@ -6,6 +6,7 @@ import animation from '../../../assets/others/cupcake-dribbble.gif'
 import { useContext } from "react"
 import { AuthContext } from "../../../providers/AuthProvider"
 
+import { MdShoppingCart } from "react-icons/md";
 
 function Navber() {
 
@@ -25,9 +26,20 @@ function Navber() {
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/menu">Our Menu</Link></li>
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/order/salad">Order Food</Link></li>
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/secret">Secret</Link></li>
+        <li>
+            <Link to="/">
+                <button className="btn">
+                    <MdShoppingCart className="mr-2" />
+                    <div className="badge badge-secondary">+0</div>
+                </button>
+            </Link>
+        </li>
 
         {
             user ? <>
+
+                {/* <span className="text-pink-600">{user?.displayName}</span> */}
+
                 <button onClick={handleLogOut} className="btn btn-ghost text-pink-600">LogOut</button>
             </>
                 :
