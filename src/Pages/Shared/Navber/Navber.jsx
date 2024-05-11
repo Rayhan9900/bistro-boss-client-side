@@ -7,10 +7,12 @@ import { useContext } from "react"
 import { AuthContext } from "../../../providers/AuthProvider"
 
 import { MdShoppingCart } from "react-icons/md";
+import useCart from "../../../hooks/useCart";
 
 function Navber() {
 
     const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart()
 
     const handleLogOut = () => {
         logOut()
@@ -27,10 +29,10 @@ function Navber() {
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/order/salad">Order Food</Link></li>
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/secret">Secret</Link></li>
         <li>
-            <Link to="/">
+            <Link to="/dashboard/cart">
                 <button className="btn">
                     <MdShoppingCart className="mr-2" />
-                    <div className="badge badge-secondary">+0</div>
+                    <div className="badge badge-secondary">+{cart.length}</div>
                 </button>
             </Link>
         </li>

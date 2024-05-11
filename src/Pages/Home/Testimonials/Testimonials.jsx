@@ -46,8 +46,8 @@ function Testimonials() {
                                 value={review.rating}
                                 readOnly
                             />
-                            <p className="my-5 text-rose-500">{review.details}</p>
-                            <h2 className="text-2xl text-orange-500">{review.name}</h2>
+                            <p className="my-5 text-fuchsia-700">{review.details}</p>
+                            <h2 className="text-2xl text-blue-600">{review.name}</h2>
                         </div>
                     </SwiperSlide>)
                 }

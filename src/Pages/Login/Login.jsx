@@ -15,7 +15,7 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
-
+    console.log('state in the location  login page', location.state)
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -105,9 +105,9 @@ const Login = () => {
                                 </label>
                                 <input onBlur={handleValidedCaptch} type="text" name="captcha" placeholder="type the captcha above" className="input input-bordered" required />
                             </div>
+                            /** TODO:  apply disabled  for  re captcha */
                             <div className="form-control mt-6">
-
-                                <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+                                <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
                             </div>
                         </form>
 
