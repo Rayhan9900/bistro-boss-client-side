@@ -4,12 +4,16 @@ import { useForm } from "react-hook-form"
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import { FcLeft, FcRight } from "react-icons/fc";
 
 
 
 
 function SignUp() {
 
+    const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -22,16 +26,30 @@ function SignUp() {
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user profile info updated')
-                        reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'User created successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/');
+                        //create user  entry in the database
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+
+                        }
+
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user added the database')
+                                    reset();
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User created successfully.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/');
+                                }
+                            })
+
+
 
                     })
                     .catch(error => console.log(error))
@@ -52,7 +70,7 @@ function SignUp() {
                         <h1 className="text-5xl text-blue-500 font-bold">Pleace Register now!</h1>
 
                     </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl shadow-orange-600  bg-pink-300">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
@@ -98,7 +116,13 @@ function SignUp() {
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                        <p><small>Already have an account <Link to="/login">login</Link></small></p>
+                        <p className='flex justify-center  text-center mb-4'>Already have an account  <FcRight size={30} />  <Link to="/login" className='text-red-600 text-2xl border  border-red-600 rounded-xl'>Login </Link>  </p>
+                        {/* <p><small><Link to="/login">login</Link></small></p> */}
+
+                        {/* <button className="flex justify-center items-center gap-3 py-2 text-3xl text-accent border border-red-600 rounded-2xl  " onClick={handleSignUpGoogle}>
+                            <FcGoogle />----- Google
+                        </button> */}
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
