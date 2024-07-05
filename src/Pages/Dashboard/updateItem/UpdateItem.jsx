@@ -1,14 +1,16 @@
-import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom"
 import SectionTitle from "../../../components/SectionTitle/SectionTitle"
-import { FaUtensils } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
+import { FaEdit } from "react-icons/fa";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-function AddItems() {
+const UpdateItem = () => {
+    const { name, category, recipe, price, _id } = useLoaderData();
 
     const { register, handleSubmit, reset } = useForm();
     const axiosPublic = useAxiosPublic();
@@ -33,15 +35,15 @@ function AddItems() {
                 image: res.data.data.display_url
             };
             //
-            const menuRes = await axiosSecure.post('/menu', menuItem);
+            const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
             console.log(menuRes);
-            if (menuRes.data.insertedId) {
+            if (menuRes.data.modifiedCount > 0) {
                 // show success popup
-                reset();
+                // reset();
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: `${data.name} is added to the menu.`,
+                    title: `${data.name} is updated to the menu.`,
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -54,16 +56,17 @@ function AddItems() {
 
     return (
         <div>
-            <SectionTitle heading="add an items" subHeading="what's new?" ></SectionTitle>
-            <div className="items-center bg-cyan-400 w-[700px]">
+            <SectionTitle heading="Update Item" subHeading="Refresh info"></SectionTitle>
+            <div className="items-center  bg-pink-700 w-[700px]">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <label className="form-control w-full ">
                             <div className="label">
-                                <span className="label-text text-indigo-800">Recipe Name*</span>
+                                <span className="label-text text-yellow-400">Recipe Name*</span>
                             </div>
                             <input
                                 type="text"
+                                defaultValue={name}
                                 placeholder="Recipe Name"
                                 {...register('name', { require: true })}
 
@@ -74,10 +77,12 @@ function AddItems() {
                         {/* category */}
                         <label className="form-control w-full">
                             <div className="label">
-                                <span className="label-text">Category*</span>
+                                <span className="label-text text-yellow-400">Category*</span>
                             </div>
-                            <select defaultValue="default" {...register("category", { require: true })}
+
+                            <select defaultValue={category} {...register("category", { require: true })}
                                 className="select select-bordered w-full max-w-xs">
+
                                 <option disabled value="default"> Select a cetegory</option>
                                 <option value="salad">salad</option>
                                 <option value="pizza">Pizza</option>
@@ -89,10 +94,11 @@ function AddItems() {
                         {/* price */}
                         <label className="form-control w-full">
                             <div className="label">
-                                <span className="label-text">Price*</span>
+                                <span className="label-text text-yellow-400">Price*</span>
                             </div>
                             <input
                                 type="number"
+                                defaultValue={price}
                                 placeholder="Price"
                                 {...register('price', { require: true })}
                                 className="input input-bordered w-full " />
@@ -101,17 +107,17 @@ function AddItems() {
                     </div>
                     <label className="form-control">
                         <div className="label">
-                            <span className="label-text">Recipe Details*</span>
+                            <span className="label-text text-yellow-400">Recipe Details*</span>
                         </div>
-                        <textarea {...register('recipe', { require: true })} className="textarea textarea-bordered h-24" placeholder="Recipe Detalis"></textarea>
+                        <textarea defaultValue={recipe} {...register('recipe', { require: true })} className="textarea textarea-bordered h-24" placeholder="Recipe Detalis"></textarea>
                         <div className="label">
                         </div>
                     </label>
                     <div className="form-control w-full my-6">
                         <input {...register('image', { require: true })} type="file" className="file-input w-full max-w-xs" />
                     </div>
-                    <button className="btn ">
-                        Add Items <FaUtensils className="text-blue-600" />
+                    <button className="btn text-accent  hover:bg-violet-600 ">
+                        Update Menu Items <FaEdit className="text-teal-500" />
                     </button>
                 </form>
             </div>
@@ -119,5 +125,4 @@ function AddItems() {
     )
 }
 
-
-export default AddItems
+export default UpdateItem

@@ -65,9 +65,9 @@ const Dashboard = () => {
 
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/reservation">
+                                    <NavLink to="/dashboard/history">
                                         <HiCalendar />
-                                        Reservation </NavLink>
+                                        Not History </NavLink>
 
                                 </li>
                                 <li>
@@ -83,9 +83,9 @@ const Dashboard = () => {
 
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/bookings">
+                                    <NavLink to="/dashboard/paymentHistory">
                                         <HiListBullet />
-                                        My Bookings</NavLink>
+                                        Real Payment History</NavLink>
 
                                 </li>
                             </>
@@ -121,7 +121,7 @@ const Dashboard = () => {
             </div>
 
             {/* Dashboard content */}
-            <div className='flex-1 p-8 bg-slate-800'>
+            <div className='flex-1 p-8 '>
                 <Outlet></Outlet>
             </div>
         </div>
