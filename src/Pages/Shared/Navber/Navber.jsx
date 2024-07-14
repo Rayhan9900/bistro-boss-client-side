@@ -8,10 +8,12 @@ import { AuthContext } from "../../../providers/AuthProvider"
 
 import { MdShoppingCart } from "react-icons/md";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 function Navber() {
 
     const { user, logOut } = useContext(AuthContext);
+    const [isAdmin] = useAdmin()
     const [cart] = useCart()
 
     const handleLogOut = () => {
@@ -27,7 +29,12 @@ function Navber() {
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/">Home</Link></li>
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/menu">Our Menu</Link></li>
         <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/order/salad">Order Food</Link></li>
-        <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/secret">Secret</Link></li>
+        {
+            // user ? 'true' : 'false'
+            // user ? condition ? 'double true': 'one true':'false'
+        }
+        {user && isAdmin && <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/dashboard/adminHome">Dashboard</Link></li>}
+        {user && !isAdmin && <li><Link className="text-pink-600 font-semibold hover:bg-yellow-400" to="/dashboard/userHome">Dashboard</Link></li>}
         <li>
             <Link to="/dashboard/cart">
                 <button className="btn">
@@ -40,7 +47,7 @@ function Navber() {
         {
             user ? <>
 
-                {/* <span className="text-pink-600">{user?.displayName}</span> */}
+                {/* <span className="text-pink-600">{user?.displayName}</span> <AdminHome></AdminHome> */}
 
                 <button onClick={handleLogOut} className="btn btn-ghost text-pink-600">LogOut</button>
             </>
